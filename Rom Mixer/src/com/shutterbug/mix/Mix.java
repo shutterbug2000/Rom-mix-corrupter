@@ -26,7 +26,7 @@ public class Mix {
 				mix.fileOut[i] = mix.file2[i];
 			}
 		}
-		mix.write(args[3], mix.fileOut);
+		mix.write(args[3], mix.fileOut, Integer.parseInt(args[2]));
 	}
 	
 	public void load(String file){
@@ -77,13 +77,13 @@ public class Mix {
 		}
 		}
 	
-	public void write(String file, char[] out){
+	public void write(String file, char[] out, int size){
 		DataOutputStream input = null;
 		try {
 			input = new DataOutputStream(new FileOutputStream(new File(file)));
 
 			int offset = 0;
-			while ((1024000 - 1) > 0) {
+			while (offset < (size - 1)) {
 				input.write((byte)(out[offset]));
 				offset++;
 			}
